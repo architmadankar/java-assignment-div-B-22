@@ -11,4 +11,4 @@ Install JAVA 8
   java Comparision
 ```
 
-TODO: // Flow chart // ScreenShots // Report //
+TODO: // Flow chart // ScreenShots // Report // Welcome and exit message (with student ID) //
