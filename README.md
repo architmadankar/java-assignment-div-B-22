@@ -1,6 +1,9 @@
 # RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM
 
 ## How to Run 
+
+Install JAVA 8 
+
 ```Bash
   javac Comparision.java
 ```
