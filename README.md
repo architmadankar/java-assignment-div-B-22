@@ -3,7 +3,7 @@
 ## How to Run 
 
 ### Requirements JAVA 8 
-
+How to run 
 ```Bash
     git clone https://github.com/architmadankar/java-assignment.git
     cd java-assignment
