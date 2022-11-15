@@ -14,4 +14,4 @@ In Command Prompt
   java Comparision
 ```
 
-TODO: // Flow chart // ScreenShots // Report // Welcome and exit message (with student ID) //
+TODO: // Flow chart // ScreenShots // Report //

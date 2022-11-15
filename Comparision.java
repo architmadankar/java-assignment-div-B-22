@@ -91,8 +91,10 @@ public class Comparision {
 
 		if (name == "") {
 			System.out.println("Thank you for using our system and good bye>>>>>> ");
+			System.out.println("Developed by Archit Madankar, 1132220243");
 		} else {
 			System.out.println("Thank you " + name + " for using our system and good bye>>>>>> ");
+			System.out.println("Developed by Archit Madankar, 1132220243");
 		}
 	}
 
