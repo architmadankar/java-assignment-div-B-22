@@ -14,4 +14,14 @@ In Command Prompt
   java Comparision
 ```
 
-TODO: // Flow chart // ScreenShots // Report //
+## Screenshots 
+
+![welcomeMessage](https://github.com/architmadankar/java-assignment/blob/main/screenshots/welcomeMessage.png?raw=true "Welcome Message")
+
+![userInputTest](https://github.com/architmadankar/java-assignment/blob/main/screenshots/userInputTest.png?raw=true "User Input")
+
+![travelDetailsTest](https://github.com/architmadankar/java-assignment/blob/main/screenshots/travelDetailsTest.png?raw=true "Travel Details")
+
+![goodbyeMessage](https://github.com/architmadankar/java-assignment/blob/main/screenshots/goodbyeMessage.png?raw=true "Goodbye Message")
+
+TODO: Project Finished 
