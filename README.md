@@ -15,16 +15,16 @@ In Command Prompt
 ```
 
 ## Screenshots 
-Welcome Message
+### Welcome Message
 ![welcomeMessage](https://github.com/architmadankar/java-assignment/blob/main/screenshots/welcomeMessage.png?raw=true "Welcome Message")
 
-User Input
+### User Input
 ![userInputTest](https://github.com/architmadankar/java-assignment/blob/main/screenshots/userInputTest.png?raw=true "User Input")
 
-Travel/Details Input
+### Travel/Details Input
 ![travelDetailsTest](https://github.com/architmadankar/java-assignment/blob/main/screenshots/travelDetailsTest.png?raw=true "Travel Details")
 
-Goodbye Message w/studentID
+### Goodbye Message w/studentID
 ![goodbyeMessage](https://github.com/architmadankar/java-assignment/blob/main/screenshots/goodbyeMessage.png?raw=true "Goodbye Message")
 
 TODO: Project Finished 
