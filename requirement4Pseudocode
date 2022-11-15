@@ -1,0 +1,142 @@
+// Main logic in requirement 4. (calculate)
+calculateCharges(num kilometers
+               , num month
+               , num date
+               , time time)
+  Declaration
+    num baseCharges
+    num distanceCharges
+    num peaktimeSurcharges
+    num weekendSurcharges
+
+  // Initialising.
+  baseCharges = 5.50
+  distanceCharges = killometers * 0.75
+
+  if isPeakTime(time) then
+    peaktimeSurcharges = 2.50
+  else
+    peaktimeSurcharges = 0
+  endif
+
+  if isWeekend(month, date) then
+    weekendSurcharges = 3.00
+  else
+    weekendSurcharges = 0
+  endif
+
+  return baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges
+
+// Main logic in requirement 4. (display charges)
+displayTravelDetails(string companyName
+                   , num cost
+                   , num month
+                   , num date
+                   , time time)
+  Declaration
+    string dayOfWeekString
+    string monthString
+
+  // Initialising.
+  dayOfWeekString = perform getDayOfWeekString(month, date)
+  monthString = perform getMonthString(month)
+
+  // Display travel details.
+  perform printStars()
+  print "Your travel details:- Day of the Week on " + date + " of the month - " + monthString + " is " + dayOfWeekString
+  if isWeekend(month, date) then
+    print "Your day of travel falls under weekend category"
+  else
+    print "Your day of travel does not falls under weekend category"
+  endif
+  print space line x1
+  if isPeakTime(time) then
+    print "Time falls in peaktime category"
+  else
+    print "Time does not falls in peaktime category"
+  endif
+  print space line x1
+  print "So charges will be applied accordingly"
+  print space line x1
+  print "The final charges under " + companyName + " is: " + cost
+  perform printStars()
+
+// Check if time is peak time.
+isPeakTime(time time)
+  return (7.00 <= time AND time <= 9.00) OR (16.00 <= time AND time <= 18.00)
+
+// Check if day of week by month and date is weekend.
+isWeekend(num month, num date)
+  Declaration
+    num saturdayValue
+    num sundayValue
+    num dayOfWeek
+
+  // Initialising.
+  saturdayValue = 6
+  sundayValue = 7
+  // LocalDate.of().DayOfWeek.getValue() are functions in Java.
+  dayOfWeek = LocalDate.of(2021, month, date)
+                       .getDayOfWeek()
+                       .getValue();
+
+  return dayOfWeek == saturdayValue OR dayOfWeek == sundayValue
+
+// Print stars.
+printStars()
+ loop from 0 to 100 
+  print(*)
+   end loop
+
+// Getting day of week string by month number and date number.
+getDayOfWeekString(num month, num date)
+  Declaration
+    num dayOfWeek
+
+  // Initialising.
+  // DayOfWeek.getValue is a function in Java.
+  dayOfWeek = DayOfWeek.getValue(month, date)
+
+  case dayOfWeek
+    case 1
+      return "MONDAY"
+    case 2
+      return "TUESDAY"
+    case 3
+      return "WEDNESDAY"
+    case 4
+      return "THURSDAY"
+    case 5
+      return "FRIDAY"
+    case 6
+      return "SATURDAY"
+    case 7
+      return "SUNDAY"
+
+// Getting month string by month number.
+getMonthString(num month)
+  case month
+    case 1
+      return "JANUARY"
+    case 2
+      return "FEBRUARY"
+    case 3
+      return "MARCH"
+    case 4
+      return "APRIL"
+    case 5
+      return "MAY"
+    case 6
+      return "JUN"
+    case 7
+      return "JULY"
+    case 8
+      return "AUGUST"
+    case 9
+      return "SEPTEMBER"
+    case 10
+      return "OCTOBER"
+    case 11
+      return "NOVEMBER"
+    case 12
+      return "DECEMBER"

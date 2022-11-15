@@ -1,0 +1,336 @@
+// Declaration for whole program.
+Declaration
+  num year
+
+// Initialising for whole program.
+// Year to use calculating is fixed at 2021 because of the below note.
+// Note: We will use these to find out if it is falling in weekend category or
+// not and We will use 2021 as a default year.
+year = 2021
+
+// Main Logic.
+Start
+  Declaration
+    num userSelection
+    string name
+    num kms
+    num month
+    num date
+    num time
+    num array chargesList
+    string array companyNameList
+    string haveNotEnteredUsageDetailsMessage
+
+  // Initialising.
+  userSelection = 0
+  name = empty string
+  kms = 0.0
+  month = 0.0
+  date = 0.0
+  time = 0.0
+  chargesList = array(0.0, 0.0, 0.0)
+  companyNameList = array("UBER", "RAPIDO", "OLA")
+  haveNotEnteredUsageDetailsMessage = "Please enter usage details first!!!\n"
+
+  perform displayWelcomeMessage()
+  perform printMenu()
+  userSelection = perform enterMenuOption()
+  while userSelection is not 6
+    case userSelection
+      case 1
+        name = perform enterName()
+        kms = perform enterKiloMeters()
+        month = perform enterTravelMonth()
+        date = perform enterTravelDate(month)
+        time = enterTravelTime()
+        chargesList[0] = perform calculateCharges(kms, month, date, time, 1)
+        chargesList[1] = perform calculateCharges(kms, month, date, time, 2)
+        chargesList[2] = perform calculateCharges(kms, month, date, time, 3)
+      case 2
+        if name == "" then
+          print(haveNotEnteredUsageDetailsMessage)
+        else
+          perform displayTravelDetails("company1", chargesList[0], month, date, time)
+        endif
+      case 3
+        if name == "" then
+          print(haveNotEnteredUsageDetailsMessage)
+        else
+          perform displayTravelDetails("company2", chargesList[1], month, date, time)
+        endif
+      case 4
+        if name == "" then
+          print(haveNotEnteredUsageDetailsMessage)
+        else
+          perform displayTravelDetails("company3", chargesList[2], month, date, time)
+        endif
+      case 5
+        perform displayMostExpensiveAndCheapestCompanyInfo(chargesList, companyNameList)
+    end case
+
+    perform printMenu()
+    userSelection = perform enterMenuOption()
+  endwhile
+
+  if name == "" then
+    print("Thank you for using our system and good bye>>>>>> ")
+  else
+    print("Thank you " + name + " for using our system and good bye>>>>>> ")
+  endif
+Stop
+
+// Display the welcome message.
+displayWelcomeMessage
+  Declaration
+    date date
+
+  // Initialising.
+  date = current date (current date is date of testing.)
+
+  // Display the welcome message.
+  perform printStars()
+  print(space line x3
+    Welcome Message 
+	  space line x2)
+
+
+// Printing star line.
+printStars()
+ loop from 0 to 100 
+  print(*)
+   end loop
+
+// Enter name.
+enterName()
+  Declaration
+    string name
+
+  // Enter name.
+  print("Enter your name")
+  input name
+
+  return name
+
+// Enter distance.
+enterKiloMeters()
+  Declaration
+    num kms
+
+  // Enter killometers by user.
+  print("Enter the travel distance in kilometers(KM) :")
+  input kms
+
+  // Check user entered killometers is valid or invalid.
+  // If the killometers is invalid, prompt the user to enter again until entering valid killometers.
+  while if kms is less than 1
+    print("Error!! Please enter the number more than 0KM :")
+    input kms
+  endwhile
+
+  return kms
+
+// Enter travel month.
+enterTravelMonth()
+  Declaration
+    num month
+
+  // Enter month by user first time.
+  print("Month of travel in numbers, January > 1 and June > 6")
+  input month
+
+  // Check user entered month is valid or invalid.
+  // If the date is invalid, prompt the user to enter again until entering valid month.
+  while month is invalid (the month is not between 1 and 12)
+    print("Error!! Please enter the correct Month")
+    input month
+  endwhile
+
+  return month
+
+// Enter travel date.
+enterTravelDate(num month)
+  Declaration
+    num maxDateOfMonth
+    num date
+
+  // Get maximum date of month.
+  maxDateOfMonth = calculation result of maximum date number of month by year and month
+
+  // Enter travel date by user first time.
+  print("Enter the date in number between 1 - " + maxDateOfMonth)
+  input date
+
+  // Check user entered date is valid or invalid.
+  // If the date is invalid, prompt the user to enter again until entering valid date.
+  while date is invalid (the date is not between 1 and maxDateOfMonth)
+    print("Error!! Please enter the correct Date")
+    input date
+  endwhile
+
+  return date
+
+// Enter travel time in 24 hour "peak"&"normal" season.
+enterTravelTime()
+  Declaration
+    num time
+
+  // Enter travel time by user first time.
+  print("Now enter the time in 24 hour clock notation (7am for 7.00, 1pm for 13.00 or 9pm for 21.00) ")
+  input time
+
+  // Check user entered date is valid or invalid.
+  // If the date is invalid, prompt the user to enter again until entering valid time.
+  while time is invalid (the time is not between 0.00 and 23.59)
+    print("Error! ::::::::: Please time using 24 hour clock notation")
+    input time
+  endwhile
+
+  return time
+
+// Calculate charges.
+calculateCharges(num kilometers
+               , num month
+               , num date
+               , time time
+               , num companyNumber)
+  Declaration
+    num array baseChargesList
+    num array distanceChargesList
+    num array peaktimeSurchargesList
+    num array weekendSurchargesList
+    num peaktimeSurcharges
+    num weekendSurcharges
+    num useChargesIndex
+
+  // Initialising.
+  // The data order is first one is company 1, next one is company 2...
+  baseChargesList = array(5.50, 4.50, 6.0 )
+  distanceChargesList = array(0.75, 0.85, 0.95)
+  peaktimeSurchargesList = array(2.50, 2.00, 1.50)
+  weekendSurchargesList = array(3.00, 2.50, 2.00)
+
+  // setting use data index because company number does not start from zero.
+  useChargesIndex = companyNumber - 1;
+
+  if isPeakTime(time) then
+    peaktimeSurcharges = 2.50
+  else
+    peaktimeSurcharges = 0
+  endif
+
+  if isWeekend(month, date) then
+    weekendSurcharges = 3.00
+  else
+    weekendSurcharges = 0
+  endif
+
+  return baseChargesList[useChargesIndex] + (kilometers * distanceChargesList[useChargesIndex]) + peaktimeSurcharges + weekendSurcharges;
+
+// Display travel details.
+displayTravelDetails(string companyName
+                   , num cost
+                   , num month
+                   , num date
+                   , time time)
+  Declaration
+    string dayOfWeekString
+    string monthString
+
+  // Initialising.
+  dayOfWeekString = perform getDayOfWeekString(month, date)
+  monthString = perform getMonthString(month)
+
+  // Display travel details.
+  perform printStars()
+  print "Your travel details:- Day of the Week on " + date + " of the month - " + monthString + " is " + dayOfWeekString
+  if isWeekend(month, date) then
+    print "Your day of travel falls under weekend category"
+  else
+    print "Your day of travel does not falls under weekend category"
+  endif
+  print space line x1
+  if isPeakTime(time) then
+    print "Time falls in peaktime category"
+  else
+    print "Time does not falls in peaktime category"
+  endif
+  print space line x1
+  print "So charges will be applied accordingly"
+  print space line x1
+  print "The final charges under " + companyName + " is: " + cost
+  perform printStars()
+
+// Check if time is peak time.
+isPeakTime(time time)
+  return (7.00 <= time AND time <= 9.00) OR (16.00 <= time AND time <= 18.00)
+
+// Check if day of week by month and date is weekend.
+isWeekend(num month, num date)
+  return true if date of week is weekend
+         calculate the date of week by year, month and date
+
+// Getting day of week string by month number and date number.
+getDayOfWeekString(num month, num date)
+  return weekend uppercase string by year, month and date (e.g. MONDAY, TUESDAY)
+
+// Getting month string by month number.
+getMonthString(int month)
+  return month uppercase string by month. (e.g. JANUARY, FEBRUARY)
+
+// Print menu.
+printMenu()
+  // Printing the menu.
+  print("Please enter the following details as stated below by using numbers:")
+  print("1. Enter User Details")
+  print("2. Display charges under UBER")
+  print("3. Display charges under RAPIDO")
+  print("4. Display Charges under OLA")
+  print("5. Show Report")
+  print("6. Exit")
+
+enterMenuOption()
+  Declaration
+    num userSelection
+
+  perform printMenu()
+  input userSelection
+
+  // Check user entered option is valid or invalid.
+  // If the option is invalid, prompt the user to enter again until entering valid option.
+  while userSelection is invalid (the userSelection is not between 1 and 6)
+    print("Error! ::::::::: Please Enter number 1 to 6 only\n")
+    perform printMenu()
+
+  return userSelection
+
+// Display most expensive and the cheapest company information.
+displayMostExpensiveAndCheapestCompanyInfo(num array chargesList, string array companyNameList)
+  Declaration
+    num cheapestCharges
+    num mostExpensiveCharges
+    num cheapestInfoIndex
+    num mostExpensiveInfoIndex
+
+  // Initialising.
+  cheapestCharges = 0.0
+  mostExpensiveCharges = 0.0
+  cheapestInfoIndex = 0
+  mostExpensiveInfoIndex = 0
+
+  // Get most expensive and the cheapest company information.
+  while referes each charges in chargesList
+    if charges <= cheapestCharges or cheapestCharges == 0.0 then
+      cheapestCharges = charges
+      cheapestInfoIndex = index of charges
+    endif
+    if mostExpensiveCharges <= charges or mostExpensiveCharges == 0.0 then
+      mostExpensiveCharges = charges
+      mostExpensiveInfoIndex = index of charges
+    endif
+  endwhile
+
+  // Display the most expensive and cheapest company information.
+  perform printStars()
+  print("The cheapest company is " + companyNameList[cheapestInfoIndex])
+  print("The most expensive company is " + companyNameList[mostExpensiveInfoIndex])
+  perform printStars()

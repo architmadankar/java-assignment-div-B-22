@@ -1,0 +1,31 @@
+//main logic in requirement 1.
+
+Start
+
+ perform printStars()
+ 
+ // Welcome message
+ print(space line x3
+    Welcome Message 
+	space line x2) 
+
+ perform printStars()
+
+ // Developer details, assessment name & date 
+ print(space line x2 
+  Developed by, Names & Student IDs
+	Space line x1 
+	 Assessment name 
+	  Space line x1
+	   date 
+	    space line x3)
+
+ perform printStars()
+
+Stop
+ 
+// Print star 
+printStars()
+ loop from 0 to 100 
+  print(*)
+   end loop
