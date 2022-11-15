@@ -2,11 +2,16 @@
 
 ## How to Run 
 
-Install JAVA 8 
-
+### Requirements JAVA 8 
+How to run 
+```Bash
+    git clone https://github.com/architmadankar/java-assignment.git
+    cd java-assignment
+```
+In Command Prompt 
 ```Bash
   javac Comparision.java
-```
-```Bash
   java Comparision
 ```
+
+TODO: // Flow chart // ScreenShots // Report // Welcome and exit message (with student ID) //
