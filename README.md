@@ -5,9 +5,11 @@
 Install JAVA 8 
 
 ```Bash
-  javac Comparision.java
+    git clone https://github.com/architmadankar/java-assignment.git
+    cd java-assignment
 ```
 ```Bash
+  javac Comparision.java
   java Comparision
 ```
 
