@@ -2,7 +2,7 @@
 
 ## How to Run 
 
-Install JAVA 8 
+### Requirements JAVA 8 
 
 ```Bash
     git clone https://github.com/architmadankar/java-assignment.git
