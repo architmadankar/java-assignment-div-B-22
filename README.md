@@ -1,5 +1,10 @@
 # RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM
 
+## About me
+### Archit Madankar 
+### Roll No. - 22
+### PRN - 1132220243
+
 ## How to Run 
 
 ### Requirements JAVA 8 
