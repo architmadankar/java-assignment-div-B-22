@@ -12,7 +12,7 @@ Java Assesment
 How to run 
 ```Bash
     git clone https://github.com/architmadankar/java-assignment.git
-    cd java-assignment
+    cd java-assignment-div-b-22
 ```
 In Command Prompt 
 ```Bash
